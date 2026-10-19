@@ -52,28 +52,29 @@ mining, 95002 fishing), each with `RequiredSkillID` and the same exclusive
 group, and the trainers that give and take them back. Darnassus has no mining
 trainer, Shattrath no gathering trainer at all.
 
-Some of those trainers give no quest in the game. The script
-(`src/FindResources.cpp`) makes them quest givers while they are in the world;
-their template in the database stays as it is.
+Some of those trainers give no quest in the game: the SQL makes them quest
+givers (`npcflag` 2). The flag stays if the module is removed; on a creature
+with no quest it does nothing.
+
+The module is data only: no C++, nothing to rebuild.
 
 ## Requirements
 
 | | |
 |---|---|
-| [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) | 3.3.5a, built with the module in `modules/` |
+| [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) | 3.3.5a |
 | Game client | the two spells' rows in `DBFilesClient\Spell.dbc` (the installer writes them) |
 
 ## Installing
 
 Stop the world server, then run `installer.exe`, the WoW-mods installer
 ([WoW-mods-installer releases](https://github.com/Adrestie/WoW-mods-installer/releases)),
-and give it this folder, the game folder and the server's folders. It copies
-the module into `modules/` and adds the spells to the game's `Spell.dbc`.
-Then rebuild the core; the world server applies the SQL at its next start.
-Every player needs the client part.
+and give it this folder, the game folder, the world server's folder and MySQL.
+It applies the SQL to the world database and adds the spells to the game's
+`Spell.dbc`; start the world server again. Every player needs the client part.
 
-By hand: copy the module into `modules/`, rebuild the core, and add the rows
-of `installer.json` (`dbc`) to the client's `Spell.dbc` in a patch archive.
+By hand: apply `data/sql/world` to the world database, and add the rows of
+`installer.json` (`dbc`) to the client's `Spell.dbc` in a patch archive.
 
 ## What to check in game
 

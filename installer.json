@@ -2,16 +2,12 @@
   "format": "wow-mods-installer/1",
   "module": "mod-find-resources",
   "title": "Find Resources",
+  "server_module": false,
   "fields": {
     "game": "required",
     "worldserver": "required",
-    "sources": "required",
     "mysql": "required"
   },
-  "signature": [
-    "src/find_resources_loader.cpp",
-    "src/FindResources.cpp"
-  ],
   "database": {
     "characters": {
       "rows": [
@@ -66,10 +62,6 @@
         {
           "table": "creature_questender",
           "where": "quest IN (95000, 95001, 95002)"
-        },
-        {
-          "table": "updates",
-          "where": "name IN ({sql_files:world})"
         }
       ]
     }
