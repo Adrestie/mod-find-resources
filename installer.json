@@ -12,10 +12,6 @@
     "src/find_resources_loader.cpp",
     "src/FindResources.cpp"
   ],
-  "configuration": {
-    "file": "mod-find-resources.conf",
-    "template": "conf/mod-find-resources.conf.dist"
-  },
   "database": {
     "characters": {
       "rows": [
@@ -26,6 +22,14 @@
         {
           "table": "character_aura",
           "where": "spell IN ({ids:Spell.dbc})"
+        },
+        {
+          "table": "character_queststatus",
+          "where": "quest IN (95000, 95001, 95002)"
+        },
+        {
+          "table": "character_queststatus_rewarded",
+          "where": "quest IN (95000, 95001, 95002)"
         }
       ]
     },
@@ -34,6 +38,34 @@
         {
           "table": "spell_dbc",
           "where": "ID IN ({ids:Spell.dbc})"
+        },
+        {
+          "table": "quest_template",
+          "where": "ID IN (95000, 95001, 95002)"
+        },
+        {
+          "table": "quest_template_addon",
+          "where": "ID IN (95000, 95001, 95002)"
+        },
+        {
+          "table": "quest_template_locale",
+          "where": "ID IN (95000, 95001, 95002)"
+        },
+        {
+          "table": "quest_offer_reward",
+          "where": "ID IN (95000, 95001, 95002)"
+        },
+        {
+          "table": "quest_offer_reward_locale",
+          "where": "ID IN (95000, 95001, 95002)"
+        },
+        {
+          "table": "creature_queststarter",
+          "where": "quest IN (95000, 95001, 95002)"
+        },
+        {
+          "table": "creature_questender",
+          "where": "quest IN (95000, 95001, 95002)"
         },
         {
           "table": "updates",
@@ -120,6 +152,33 @@
           "195": "Поиск трав, минералов и рыбы.",
           "203": 16712190,
           "213": 1,
+          "216": 1065353216,
+          "217": 1065353216,
+          "218": 1065353216,
+          "225": 1
+        },
+        {
+          "0": 95001,
+          "4": 262400,
+          "28": 1,
+          "35": 101,
+          "46": 1,
+          "68": -1,
+          "71": 36,
+          "86": 1,
+          "116": 95000,
+          "131": 107,
+          "133": 171,
+          "136": "Find Resources",
+          "138": "Découverte de ressources",
+          "139": "Ressourcensuche",
+          "142": "Encontrar recursos",
+          "143": "Encontrar recursos",
+          "144": "Поиск ресурсов",
+          "152": 16712190,
+          "169": 16712190,
+          "186": 16712190,
+          "203": 16712190,
           "216": 1065353216,
           "217": 1065353216,
           "218": 1065353216,

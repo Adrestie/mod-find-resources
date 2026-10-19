@@ -1,0 +1,79 @@
+-- mod-find-resources: the quests that teach Find Resources (95000-95002,
+-- tranche 95 of the WoW-mods registry), one per gathering profession.
+--
+-- Each is given and taken back by the trainers of its profession in the eight
+-- capitals, to the characters who have the profession (RequiredSkillID). It
+-- completes as soon as it is accepted (QuestType 0) and its reward is 95001,
+-- which teaches 95000. The three share an exclusive group: once one is done,
+-- the others are no longer offered. The trainers that give no quest in the
+-- game are made quest givers by the module's script.
+--
+-- Idempotent: the rows are deleted before being written again.
+
+DELETE FROM `quest_template` WHERE `ID` IN (95000, 95001, 95002);
+DELETE FROM `quest_template_addon` WHERE `ID` IN (95000, 95001, 95002);
+DELETE FROM `quest_template_locale` WHERE `ID` IN (95000, 95001, 95002);
+DELETE FROM `quest_offer_reward` WHERE `ID` IN (95000, 95001, 95002);
+DELETE FROM `quest_offer_reward_locale` WHERE `ID` IN (95000, 95001, 95002);
+DELETE FROM `creature_queststarter` WHERE `quest` IN (95000, 95001, 95002);
+DELETE FROM `creature_questender` WHERE `quest` IN (95000, 95001, 95002);
+
+INSERT INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `QuestSortID`, `RewardDisplaySpell`, `RewardSpell`, `LogTitle`, `LogDescription`, `QuestDescription`)
+VALUES (95000, 0, -1, 1, -24, 95000, 95001, 'A Nose for Everything', 'Listen to your trainer''s secret.', 'You again, $N? Every morning it''s the same dilemma: herbs, ore or fish? And every evening you come back grumbling because you walked right past a Black Lotus while you were looking for copper.$B$BFrankly, the whole guild is tired of hearing you sulk. So here is an old family secret: look at your minimap, squint a little, and everything shows up at once.$B$BDon''t ask me how it works. Nobody knows.');
+INSERT INTO `quest_template_addon` (`ID`, `ExclusiveGroup`, `RequiredSkillID`, `RequiredSkillPoints`)
+VALUES (95000, 95000, 182, 1);
+INSERT INTO `quest_offer_reward` (`ID`, `Emote1`, `RewardText`) VALUES (95000, 1, 'There you go! Herbs, ore, fish: everything blinks on your map now. Just try not to run into a lake chasing a vein.');
+INSERT INTO `quest_template_locale` (`ID`, `locale`, `Title`, `Details`, `Objectives`) VALUES
+(95000, 'frFR', 'Du flair pour tout', 'Encore toi, $N ? Chaque matin, c''est le même dilemme : les herbes, les filons ou les poissons ? Et chaque soir, tu reviens en ronchonnant parce que tu es $gpassé:passée; à côté d''un Lotus noir pendant que tu cherchais du cuivre.$B$BFranchement, toute la guilde en a assez de t''entendre râler. Alors voici un vieux secret de famille : regarde ta minicarte en plissant un peu les yeux, et tout apparaît d''un coup.$B$BNe me demande pas comment ça marche. Personne ne le sait.', 'Écoutez le secret de votre maître.'),
+(95000, 'deDE', 'Ein Riecher für alles', 'Ihr schon wieder, $N? Jeden Morgen dasselbe Dilemma: Kräuter, Erz oder Fisch? Und jeden Abend kommt Ihr murrend zurück, weil Ihr an einem Schwarzen Lotus vorbeigelaufen seid, während Ihr nach Kupfer gesucht habt.$B$BEhrlich gesagt kann die ganze Gilde Euer Gejammer nicht mehr hören. Also hier ein altes Familiengeheimnis: Schaut auf Eure Minikarte, kneift ein wenig die Augen zusammen, und alles erscheint auf einmal.$B$BFragt mich nicht, wie das funktioniert. Das weiß niemand.', 'Hört Euch das Geheimnis Eures Lehrers an.'),
+(95000, 'esES', 'Olfato para todo', '¿Otra vez tú, $N? Cada mañana el mismo dilema: ¿hierbas, mineral o peces? Y cada noche vuelves refunfuñando porque pasaste junto a un loto negro mientras buscabas cobre.$B$BSinceramente, todo el gremio está harto de oírte protestar. Así que aquí tienes un viejo secreto de familia: mira tu minimapa, entorna un poco los ojos y todo aparece a la vez.$B$BNo me preguntes cómo funciona. Nadie lo sabe.', 'Escucha el secreto de tu instructor.'),
+(95000, 'ruRU', 'Нюх на всё', 'Опять ты, $N? Каждое утро одна и та же дилемма: травы, руда или рыба? А каждый вечер ты возвращаешься и ворчишь, потому что $gпрошел:прошла; мимо черного лотоса, пока искал$g:а; медь.$B$BЧестно говоря, вся гильдия устала слушать твои жалобы. Так что вот старый семейный секрет: посмотри на миникарту, слегка прищурься – и все появится сразу.$B$BНе спрашивай, как это работает. Никто не знает.', 'Выслушайте секрет наставника.'),
+(95000, 'esMX', 'Olfato para todo', '¿Otra vez tú, $N? Cada mañana el mismo dilema: ¿hierbas, mineral o peces? Y cada noche vuelves refunfuñando porque pasaste junto a un loto negro mientras buscabas cobre.$B$BSinceramente, todo el gremio está harto de oírte protestar. Así que aquí tienes un viejo secreto de familia: mira tu minimapa, entorna un poco los ojos y todo aparece a la vez.$B$BNo me preguntes cómo funciona. Nadie lo sabe.', 'Escucha el secreto de tu instructor.');
+INSERT INTO `quest_offer_reward_locale` (`ID`, `locale`, `RewardText`) VALUES
+(95000, 'frFR', 'Et voilà ! Herbes, minerai, poissons : tout clignote sur ta carte. Essaie juste de ne pas foncer dans un lac en courant après un filon.'),
+(95000, 'deDE', 'Bitte sehr! Kräuter, Erz, Fische: Alles blinkt jetzt auf Eurer Karte. Versucht nur, nicht in einen See zu rennen, während Ihr einer Ader nachjagt.'),
+(95000, 'esES', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.'),
+(95000, 'ruRU', 'Вот и все! Травы, руда, рыба: теперь все мигает на твоей карте. Только постарайся не забежать в озеро, гоняясь за жилой.'),
+(95000, 'esMX', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.');
+INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5566, 95000), (5502, 95000), (5137, 95000), (4204, 95000), (16736, 95000), (3404, 95000), (3013, 95000), (4614, 95000), (16644, 95000);
+INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5566, 95000), (5502, 95000), (5137, 95000), (4204, 95000), (16736, 95000), (3404, 95000), (3013, 95000), (4614, 95000), (16644, 95000);
+
+INSERT INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `QuestSortID`, `RewardDisplaySpell`, `RewardSpell`, `LogTitle`, `LogDescription`, `QuestDescription`)
+VALUES (95001, 0, -1, 1, 0, 95000, 95001, 'A Nose for Everything', 'Listen to your trainer''s secret.', 'You again, $N? Every morning it''s the same dilemma: herbs, ore or fish? And every evening you come back grumbling because you walked right past a Black Lotus while you were looking for copper.$B$BFrankly, the whole guild is tired of hearing you sulk. So here is an old family secret: look at your minimap, squint a little, and everything shows up at once.$B$BDon''t ask me how it works. Nobody knows.');
+INSERT INTO `quest_template_addon` (`ID`, `ExclusiveGroup`, `RequiredSkillID`, `RequiredSkillPoints`)
+VALUES (95001, 95000, 186, 1);
+INSERT INTO `quest_offer_reward` (`ID`, `Emote1`, `RewardText`) VALUES (95001, 1, 'There you go! Herbs, ore, fish: everything blinks on your map now. Just try not to run into a lake chasing a vein.');
+INSERT INTO `quest_template_locale` (`ID`, `locale`, `Title`, `Details`, `Objectives`) VALUES
+(95001, 'frFR', 'Du flair pour tout', 'Encore toi, $N ? Chaque matin, c''est le même dilemme : les herbes, les filons ou les poissons ? Et chaque soir, tu reviens en ronchonnant parce que tu es $gpassé:passée; à côté d''un Lotus noir pendant que tu cherchais du cuivre.$B$BFranchement, toute la guilde en a assez de t''entendre râler. Alors voici un vieux secret de famille : regarde ta minicarte en plissant un peu les yeux, et tout apparaît d''un coup.$B$BNe me demande pas comment ça marche. Personne ne le sait.', 'Écoutez le secret de votre maître.'),
+(95001, 'deDE', 'Ein Riecher für alles', 'Ihr schon wieder, $N? Jeden Morgen dasselbe Dilemma: Kräuter, Erz oder Fisch? Und jeden Abend kommt Ihr murrend zurück, weil Ihr an einem Schwarzen Lotus vorbeigelaufen seid, während Ihr nach Kupfer gesucht habt.$B$BEhrlich gesagt kann die ganze Gilde Euer Gejammer nicht mehr hören. Also hier ein altes Familiengeheimnis: Schaut auf Eure Minikarte, kneift ein wenig die Augen zusammen, und alles erscheint auf einmal.$B$BFragt mich nicht, wie das funktioniert. Das weiß niemand.', 'Hört Euch das Geheimnis Eures Lehrers an.'),
+(95001, 'esES', 'Olfato para todo', '¿Otra vez tú, $N? Cada mañana el mismo dilema: ¿hierbas, mineral o peces? Y cada noche vuelves refunfuñando porque pasaste junto a un loto negro mientras buscabas cobre.$B$BSinceramente, todo el gremio está harto de oírte protestar. Así que aquí tienes un viejo secreto de familia: mira tu minimapa, entorna un poco los ojos y todo aparece a la vez.$B$BNo me preguntes cómo funciona. Nadie lo sabe.', 'Escucha el secreto de tu instructor.'),
+(95001, 'ruRU', 'Нюх на всё', 'Опять ты, $N? Каждое утро одна и та же дилемма: травы, руда или рыба? А каждый вечер ты возвращаешься и ворчишь, потому что $gпрошел:прошла; мимо черного лотоса, пока искал$g:а; медь.$B$BЧестно говоря, вся гильдия устала слушать твои жалобы. Так что вот старый семейный секрет: посмотри на миникарту, слегка прищурься – и все появится сразу.$B$BНе спрашивай, как это работает. Никто не знает.', 'Выслушайте секрет наставника.'),
+(95001, 'esMX', 'Olfato para todo', '¿Otra vez tú, $N? Cada mañana el mismo dilema: ¿hierbas, mineral o peces? Y cada noche vuelves refunfuñando porque pasaste junto a un loto negro mientras buscabas cobre.$B$BSinceramente, todo el gremio está harto de oírte protestar. Así que aquí tienes un viejo secreto de familia: mira tu minimapa, entorna un poco los ojos y todo aparece a la vez.$B$BNo me preguntes cómo funciona. Nadie lo sabe.', 'Escucha el secreto de tu instructor.');
+INSERT INTO `quest_offer_reward_locale` (`ID`, `locale`, `RewardText`) VALUES
+(95001, 'frFR', 'Et voilà ! Herbes, minerai, poissons : tout clignote sur ta carte. Essaie juste de ne pas foncer dans un lac en courant après un filon.'),
+(95001, 'deDE', 'Bitte sehr! Kräuter, Erz, Fische: Alles blinkt jetzt auf Eurer Karte. Versucht nur, nicht in einen See zu rennen, während Ihr einer Ader nachjagt.'),
+(95001, 'esES', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.'),
+(95001, 'ruRU', 'Вот и все! Травы, руда, рыба: теперь все мигает на твоей карте. Только постарайся не забежать в озеро, гоняясь за жилой.'),
+(95001, 'esMX', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.');
+INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5513, 95001), (4254, 95001), (16752, 95001), (3357, 95001), (3001, 95001), (4598, 95001), (16663, 95001);
+INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5513, 95001), (4254, 95001), (16752, 95001), (3357, 95001), (3001, 95001), (4598, 95001), (16663, 95001);
+
+INSERT INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `QuestSortID`, `RewardDisplaySpell`, `RewardSpell`, `LogTitle`, `LogDescription`, `QuestDescription`)
+VALUES (95002, 0, -1, 1, -101, 95000, 95001, 'A Nose for Everything', 'Listen to your trainer''s secret.', 'You again, $N? Every morning it''s the same dilemma: herbs, ore or fish? And every evening you come back grumbling because you walked right past a Black Lotus while you were looking for copper.$B$BFrankly, the whole guild is tired of hearing you sulk. So here is an old family secret: look at your minimap, squint a little, and everything shows up at once.$B$BDon''t ask me how it works. Nobody knows.');
+INSERT INTO `quest_template_addon` (`ID`, `ExclusiveGroup`, `RequiredSkillID`, `RequiredSkillPoints`)
+VALUES (95002, 95000, 356, 1);
+INSERT INTO `quest_offer_reward` (`ID`, `Emote1`, `RewardText`) VALUES (95002, 1, 'There you go! Herbs, ore, fish: everything blinks on your map now. Just try not to run into a lake chasing a vein.');
+INSERT INTO `quest_template_locale` (`ID`, `locale`, `Title`, `Details`, `Objectives`) VALUES
+(95002, 'frFR', 'Du flair pour tout', 'Encore toi, $N ? Chaque matin, c''est le même dilemme : les herbes, les filons ou les poissons ? Et chaque soir, tu reviens en ronchonnant parce que tu es $gpassé:passée; à côté d''un Lotus noir pendant que tu cherchais du cuivre.$B$BFranchement, toute la guilde en a assez de t''entendre râler. Alors voici un vieux secret de famille : regarde ta minicarte en plissant un peu les yeux, et tout apparaît d''un coup.$B$BNe me demande pas comment ça marche. Personne ne le sait.', 'Écoutez le secret de votre maître.'),
+(95002, 'deDE', 'Ein Riecher für alles', 'Ihr schon wieder, $N? Jeden Morgen dasselbe Dilemma: Kräuter, Erz oder Fisch? Und jeden Abend kommt Ihr murrend zurück, weil Ihr an einem Schwarzen Lotus vorbeigelaufen seid, während Ihr nach Kupfer gesucht habt.$B$BEhrlich gesagt kann die ganze Gilde Euer Gejammer nicht mehr hören. Also hier ein altes Familiengeheimnis: Schaut auf Eure Minikarte, kneift ein wenig die Augen zusammen, und alles erscheint auf einmal.$B$BFragt mich nicht, wie das funktioniert. Das weiß niemand.', 'Hört Euch das Geheimnis Eures Lehrers an.'),
+(95002, 'esES', 'Olfato para todo', '¿Otra vez tú, $N? Cada mañana el mismo dilema: ¿hierbas, mineral o peces? Y cada noche vuelves refunfuñando porque pasaste junto a un loto negro mientras buscabas cobre.$B$BSinceramente, todo el gremio está harto de oírte protestar. Así que aquí tienes un viejo secreto de familia: mira tu minimapa, entorna un poco los ojos y todo aparece a la vez.$B$BNo me preguntes cómo funciona. Nadie lo sabe.', 'Escucha el secreto de tu instructor.'),
+(95002, 'ruRU', 'Нюх на всё', 'Опять ты, $N? Каждое утро одна и та же дилемма: травы, руда или рыба? А каждый вечер ты возвращаешься и ворчишь, потому что $gпрошел:прошла; мимо черного лотоса, пока искал$g:а; медь.$B$BЧестно говоря, вся гильдия устала слушать твои жалобы. Так что вот старый семейный секрет: посмотри на миникарту, слегка прищурься – и все появится сразу.$B$BНе спрашивай, как это работает. Никто не знает.', 'Выслушайте секрет наставника.'),
+(95002, 'esMX', 'Olfato para todo', '¿Otra vez tú, $N? Cada mañana el mismo dilema: ¿hierbas, mineral o peces? Y cada noche vuelves refunfuñando porque pasaste junto a un loto negro mientras buscabas cobre.$B$BSinceramente, todo el gremio está harto de oírte protestar. Así que aquí tienes un viejo secreto de familia: mira tu minimapa, entorna un poco los ojos y todo aparece a la vez.$B$BNo me preguntes cómo funciona. Nadie lo sabe.', 'Escucha el secreto de tu instructor.');
+INSERT INTO `quest_offer_reward_locale` (`ID`, `locale`, `RewardText`) VALUES
+(95002, 'frFR', 'Et voilà ! Herbes, minerai, poissons : tout clignote sur ta carte. Essaie juste de ne pas foncer dans un lac en courant après un filon.'),
+(95002, 'deDE', 'Bitte sehr! Kräuter, Erz, Fische: Alles blinkt jetzt auf Eurer Karte. Versucht nur, nicht in einen See zu rennen, während Ihr einer Ader nachjagt.'),
+(95002, 'esES', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.'),
+(95002, 'ruRU', 'Вот и все! Травы, руда, рыба: теперь все мигает на твоей карте. Только постарайся не забежать в озеро, гоняясь за жилой.'),
+(95002, 'esMX', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.');
+INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5493, 95002), (5161, 95002), (4156, 95002), (16774, 95002), (3332, 95002), (3028, 95002), (4573, 95002), (16780, 95002);
+INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5493, 95002), (5161, 95002), (4156, 95002), (16774, 95002), (3332, 95002), (3028, 95002), (4573, 95002), (16780, 95002);
