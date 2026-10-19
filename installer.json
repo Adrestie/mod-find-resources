@@ -1,0 +1,131 @@
+{
+  "format": "wow-mods-installer/1",
+  "module": "mod-find-resources",
+  "title": "Find Resources",
+  "fields": {
+    "game": "required",
+    "worldserver": "required",
+    "sources": "required",
+    "mysql": "required"
+  },
+  "signature": [
+    "src/find_resources_loader.cpp",
+    "src/FindResources.cpp"
+  ],
+  "configuration": {
+    "file": "mod-find-resources.conf",
+    "template": "conf/mod-find-resources.conf.dist"
+  },
+  "database": {
+    "characters": {
+      "rows": [
+        {
+          "table": "character_spell",
+          "where": "spell IN ({ids:Spell.dbc})"
+        },
+        {
+          "table": "character_aura",
+          "where": "spell IN ({ids:Spell.dbc})"
+        }
+      ]
+    },
+    "world": {
+      "rows": [
+        {
+          "table": "spell_dbc",
+          "where": "ID IN ({ids:Spell.dbc})"
+        },
+        {
+          "table": "updates",
+          "where": "name IN ({sql_files:world})"
+        }
+      ]
+    }
+  },
+  "dbc": [
+    {
+      "file": "Spell.dbc",
+      "fields": 234,
+      "text_fields": [
+        [
+          136,
+          151
+        ],
+        [
+          153,
+          168
+        ],
+        [
+          170,
+          185
+        ],
+        [
+          187,
+          202
+        ]
+      ],
+      "client": true,
+      "server": false,
+      "rows": [
+        {
+          "0": 95000,
+          "1": 1238,
+          "4": 687865872,
+          "5": 268566560,
+          "6": 268959744,
+          "7": 1048576,
+          "10": 4096,
+          "28": 1,
+          "30": 1500,
+          "35": 101,
+          "40": 21,
+          "46": 1,
+          "68": -1,
+          "71": 6,
+          "72": 6,
+          "73": 6,
+          "76": 1,
+          "82": -1,
+          "86": 1,
+          "87": 1,
+          "88": 1,
+          "95": 45,
+          "96": 45,
+          "97": 45,
+          "110": 2,
+          "111": 3,
+          "112": 19,
+          "133": 171,
+          "134": 171,
+          "136": "Find Resources",
+          "138": "Découverte de ressources",
+          "139": "Ressourcensuche",
+          "142": "Encontrar recursos",
+          "143": "Encontrar recursos",
+          "144": "Поиск ресурсов",
+          "152": 16712190,
+          "169": 16712190,
+          "170": "Shows nearby herbs, mineral veins and schools of fish on the minimap.",
+          "172": "Les herbes, les filons de minerai et les bancs de poissons des environs apparaissent sur la minicarte.",
+          "173": "Zeigt Kräuter, Erzvorkommen und Fischschwärme in der Nähe auf der Minikarte an.",
+          "176": "Muestra en el minimapa las hierbas, los filones de mineral y los bancos de peces cercanos.",
+          "177": "Muestra en el minimapa las hierbas, los filones de mineral y los bancos de peces cercanos.",
+          "178": "Отображает на миникарте травы, рудные жилы и косяки рыбы поблизости.",
+          "186": 16712190,
+          "187": "Tracking herbs, minerals and fish.",
+          "189": "Repère les herbes, les gisements et les bancs de poissons.",
+          "190": "Sucht nach Kräutern, Mineralien und Fischen.",
+          "193": "Rastreando hierbas, minerales y peces.",
+          "194": "Rastreando hierbas, minerales y peces.",
+          "195": "Поиск трав, минералов и рыбы.",
+          "203": 16712190,
+          "213": 1,
+          "216": 1065353216,
+          "217": 1065353216,
+          "218": 1065353216,
+          "225": 1
+        }
+      ]
+    }
+  ]
+}
