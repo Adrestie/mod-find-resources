@@ -15,11 +15,11 @@ mineral veins and schools of fish.
 
 - **Learned from a trainer, by a quest.** The herbalism, mining and fishing
   trainers of the eight capitals (Stormwind, Ironforge, Darnassus, the Exodar,
-  Orgrimmar, Thunder Bluff, the Undercity, Silvermoon) offer the quest *A Nose
-  for Everything* to the characters who have their profession. It completes as
-  soon as it is accepted, after a few lines from the trainer, and teaches the
-  spell. One quest is enough: once it is done at one trainer, the others no
-  longer offer it.
+  Orgrimmar, Thunder Bluff, the Undercity, Silvermoon) and of Dalaran offer
+  the quest *A Nose for Everything* to the characters who have their
+  profession. It completes as soon as it is accepted, after a few lines from
+  the trainer, and teaches the spell. One quest is enough: once it is done at
+  one trainer, the others no longer offer it.
 - **A tracker like the others.** It sits in the minimap's tracking menu and in
   the General tab of the spellbook, is instant, lasts until cancelled and
   shares the trackers' cooldown. Casting it ends Find Herbs, Find Minerals,
@@ -50,7 +50,7 @@ the client's `Spell.dbc`, written by the installer (`installer.json`).
 `find_resources_02_quests.sql` holds the three quests (95000 herbalism, 95001
 mining, 95002 fishing), each with `RequiredSkillID` and the same exclusive
 group, and the trainers that give and take them back. Darnassus has no mining
-trainer.
+trainer, Shattrath no gathering trainer at all.
 
 Some of those trainers give no quest in the game. The script
 (`src/FindResources.cpp`) makes them quest givers while they are in the world;

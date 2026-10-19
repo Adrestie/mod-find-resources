@@ -2,7 +2,7 @@
 -- tranche 95 of the WoW-mods registry), one per gathering profession.
 --
 -- Each is given and taken back by the trainers of its profession in the eight
--- capitals, to the characters who have the profession (RequiredSkillID). It
+-- capitals and Dalaran, to the characters who have the profession (RequiredSkillID). It
 -- completes as soon as it is accepted (QuestType 0) and its reward is 95001,
 -- which teaches 95000. The three share an exclusive group: once one is done,
 -- the others are no longer offered. The trainers that give no quest in the
@@ -35,8 +35,8 @@ INSERT INTO `quest_offer_reward_locale` (`ID`, `locale`, `RewardText`) VALUES
 (95000, 'esES', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.'),
 (95000, 'ruRU', 'Вот и все! Травы, руда, рыба: теперь все мигает на твоей карте. Только постарайся не забежать в озеро, гоняясь за жилой.'),
 (95000, 'esMX', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.');
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5566, 95000), (5502, 95000), (5137, 95000), (4204, 95000), (16736, 95000), (3404, 95000), (3013, 95000), (4614, 95000), (16644, 95000);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5566, 95000), (5502, 95000), (5137, 95000), (4204, 95000), (16736, 95000), (3404, 95000), (3013, 95000), (4614, 95000), (16644, 95000);
+INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5566, 95000), (5502, 95000), (5137, 95000), (4204, 95000), (16736, 95000), (3404, 95000), (3013, 95000), (4614, 95000), (16644, 95000), (28704, 95000);
+INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5566, 95000), (5502, 95000), (5137, 95000), (4204, 95000), (16736, 95000), (3404, 95000), (3013, 95000), (4614, 95000), (16644, 95000), (28704, 95000);
 
 INSERT INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `QuestSortID`, `RewardDisplaySpell`, `RewardSpell`, `LogTitle`, `LogDescription`, `QuestDescription`)
 VALUES (95001, 0, -1, 1, 0, 95000, 95001, 'A Nose for Everything', 'Listen to your trainer''s secret.', 'You again, $N? Every morning it''s the same dilemma: herbs, ore or fish? And every evening you come back grumbling because you walked right past a Black Lotus while you were looking for copper.$B$BFrankly, the whole guild is tired of hearing you sulk. So here is an old family secret: look at your minimap, squint a little, and everything shows up at once.$B$BDon''t ask me how it works. Nobody knows.');
@@ -55,8 +55,8 @@ INSERT INTO `quest_offer_reward_locale` (`ID`, `locale`, `RewardText`) VALUES
 (95001, 'esES', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.'),
 (95001, 'ruRU', 'Вот и все! Травы, руда, рыба: теперь все мигает на твоей карте. Только постарайся не забежать в озеро, гоняясь за жилой.'),
 (95001, 'esMX', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.');
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5513, 95001), (4254, 95001), (16752, 95001), (3357, 95001), (3001, 95001), (4598, 95001), (16663, 95001);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5513, 95001), (4254, 95001), (16752, 95001), (3357, 95001), (3001, 95001), (4598, 95001), (16663, 95001);
+INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5513, 95001), (4254, 95001), (16752, 95001), (3357, 95001), (3001, 95001), (4598, 95001), (16663, 95001), (28698, 95001);
+INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5513, 95001), (4254, 95001), (16752, 95001), (3357, 95001), (3001, 95001), (4598, 95001), (16663, 95001), (28698, 95001);
 
 INSERT INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `QuestSortID`, `RewardDisplaySpell`, `RewardSpell`, `LogTitle`, `LogDescription`, `QuestDescription`)
 VALUES (95002, 0, -1, 1, -101, 95000, 95001, 'A Nose for Everything', 'Listen to your trainer''s secret.', 'You again, $N? Every morning it''s the same dilemma: herbs, ore or fish? And every evening you come back grumbling because you walked right past a Black Lotus while you were looking for copper.$B$BFrankly, the whole guild is tired of hearing you sulk. So here is an old family secret: look at your minimap, squint a little, and everything shows up at once.$B$BDon''t ask me how it works. Nobody knows.');
@@ -75,5 +75,5 @@ INSERT INTO `quest_offer_reward_locale` (`ID`, `locale`, `RewardText`) VALUES
 (95002, 'esES', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.'),
 (95002, 'ruRU', 'Вот и все! Травы, руда, рыба: теперь все мигает на твоей карте. Только постарайся не забежать в озеро, гоняясь за жилой.'),
 (95002, 'esMX', '¡Ya está! Hierbas, mineral, peces: ahora todo parpadea en tu mapa. Solo intenta no meterte en un lago persiguiendo un filón.');
-INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5493, 95002), (5161, 95002), (4156, 95002), (16774, 95002), (3332, 95002), (3028, 95002), (4573, 95002), (16780, 95002);
-INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5493, 95002), (5161, 95002), (4156, 95002), (16774, 95002), (3332, 95002), (3028, 95002), (4573, 95002), (16780, 95002);
+INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (5493, 95002), (5161, 95002), (4156, 95002), (16774, 95002), (3332, 95002), (3028, 95002), (4573, 95002), (16780, 95002), (28742, 95002);
+INSERT INTO `creature_questender` (`id`, `quest`) VALUES (5493, 95002), (5161, 95002), (4156, 95002), (16774, 95002), (3332, 95002), (3028, 95002), (4573, 95002), (16780, 95002), (28742, 95002);

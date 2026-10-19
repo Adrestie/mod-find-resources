@@ -19,9 +19,9 @@
  * Find Resources (spell 95000) tracks herbs, minerals and schools of fish on
  * the minimap at once. The spell and the quests that teach it are data
  * (data/sql, installer.json): one quest per gathering profession, given by the
- * profession's trainers in the capitals. Some of those trainers give no quest
- * in the game; this script makes them quest givers while they are in the
- * world, without changing their template in the database.
+ * profession's trainers in the capitals and Dalaran. Some of those trainers
+ * give no quest in the game; this script makes them quest givers while they
+ * are in the world, without changing their template in the database.
  */
 
 #include "Creature.h"
@@ -31,13 +31,13 @@
 
 namespace
 {
-    // Herbalism, mining and fishing trainers of the eight capitals; the same
-    // list as creature_queststarter in data/sql/world.
+    // Herbalism, mining and fishing trainers of the eight capitals and
+    // Dalaran; the same list as creature_queststarter in data/sql/world.
     std::unordered_set<uint32> const Trainers =
     {
-        5566, 5502, 5137, 4204, 16736, 3404, 3013, 4614, 16644,  // herbalism
-        5513, 4254, 16752, 3357, 3001, 4598, 16663,              // mining
-        5493, 5161, 4156, 16774, 3332, 3028, 4573, 16780         // fishing
+        5566, 5502, 5137, 4204, 16736, 3404, 3013, 4614, 16644, 28704,  // herbalism
+        5513, 4254, 16752, 3357, 3001, 4598, 16663, 28698,              // mining
+        5493, 5161, 4156, 16774, 3332, 3028, 4573, 16780, 28742         // fishing
     };
 }
 
