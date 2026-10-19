@@ -53,8 +53,8 @@ group, and the trainers that give and take them back. Darnassus has no mining
 trainer, Shattrath no gathering trainer at all.
 
 Some of those trainers give no quest in the game: the SQL makes them quest
-givers (`npcflag` 2). The flag stays if the module is removed; on a creature
-with no quest it does nothing.
+givers (`npcflag` 2), and removal takes the flag back from those, and those
+only (`database.world.before` of `installer.json`).
 
 The module is data only: no C++, nothing to rebuild.
 
@@ -63,6 +63,7 @@ The module is data only: no C++, nothing to rebuild.
 | | |
 |---|---|
 | [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) | 3.3.5a |
+| [WoW-mods-installer](https://github.com/Adrestie/WoW-mods-installer) | a version after V1.11, which runs `before` for a package without server module |
 | Game client | the two spells' rows in `DBFilesClient\Spell.dbc` (the installer writes them) |
 
 ## Installing

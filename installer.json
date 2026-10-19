@@ -30,6 +30,12 @@
       ]
     },
     "world": {
+      "before": [
+        {
+          "if_column": "creature_template.npcflag",
+          "sql": "UPDATE `creature_template` SET `npcflag` = `npcflag` & ~2 WHERE `entry` IN (5137, 5493, 5502, 5513, 16644, 16663, 16736, 16752, 16774, 16780, 28698, 28704)"
+        }
+      ],
       "rows": [
         {
           "table": "spell_dbc",

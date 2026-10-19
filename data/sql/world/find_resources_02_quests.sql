@@ -6,8 +6,8 @@
 -- completes as soon as it is accepted (QuestType 0) and its reward is 95001,
 -- which teaches 95000. The three share an exclusive group: once one is done,
 -- the others are no longer offered. The trainers that give no quest in the
--- game become quest givers (npcflag 2); the flag stays when the module is
--- removed, and does nothing on a creature that has no quest.
+-- game become quest givers (npcflag 2); the installer takes the flag back on
+-- removal (installer.json, database.world.before).
 --
 -- Idempotent: the rows are deleted before being written again.
 
@@ -19,7 +19,7 @@ DELETE FROM `quest_offer_reward_locale` WHERE `ID` IN (95000, 95001, 95002);
 DELETE FROM `creature_queststarter` WHERE `quest` IN (95000, 95001, 95002);
 DELETE FROM `creature_questender` WHERE `quest` IN (95000, 95001, 95002);
 
-UPDATE `creature_template` SET `npcflag` = `npcflag` | 2 WHERE `entry` IN (5566, 5502, 5137, 4204, 16736, 3404, 3013, 4614, 16644, 28704, 5513, 4254, 16752, 3357, 3001, 4598, 16663, 28698, 5493, 5161, 4156, 16774, 3332, 3028, 4573, 16780, 28742);
+UPDATE `creature_template` SET `npcflag` = `npcflag` | 2 WHERE `entry` IN (5137, 5493, 5502, 5513, 16644, 16663, 16736, 16752, 16774, 16780, 28698, 28704);
 
 INSERT INTO `quest_template` (`ID`, `QuestType`, `QuestLevel`, `MinLevel`, `QuestSortID`, `RewardDisplaySpell`, `RewardSpell`, `LogTitle`, `LogDescription`, `QuestDescription`)
 VALUES (95000, 0, -1, 1, -24, 95000, 95001, 'A Nose for Everything', 'Listen to your trainer''s secret.', 'You again, $N? Every morning it''s the same dilemma: herbs, ore or fish? And every evening you come back grumbling because you walked right past a Black Lotus while you were looking for copper.$B$BFrankly, the whole guild is tired of hearing you sulk. So here is an old family secret: look at your minimap, squint a little, and everything shows up at once.$B$BDon''t ask me how it works. Nobody knows.');
