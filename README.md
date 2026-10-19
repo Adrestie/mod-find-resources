@@ -63,7 +63,7 @@ The module is data only: no C++, nothing to rebuild.
 | | |
 |---|---|
 | [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) | 3.3.5a |
-| [WoW-mods-installer](https://github.com/Adrestie/WoW-mods-installer) | a version after V1.11, which runs `before` for a package without server module |
+| [WoW-mods-installer](https://github.com/Adrestie/WoW-mods-installer) | V1.12 or later |
 | Game client | the two spells' rows in `DBFilesClient\Spell.dbc` (the installer writes them) |
 
 ## Installing
